@@ -3,7 +3,7 @@ const registroBtn = document.getElementById('registrarse');
 const accederBtn = document.getElementById('acceder');
 
 var enfoque = document.URL;
-console.log(enfoque);
+//console.log(enfoque);
 if(enfoque.includes("registrarse")){
     contenedor.classList.add("active");
 }//Insertado para ir directamente a registrarse

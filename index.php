@@ -17,7 +17,7 @@
     //-Si esta en una pagina distinta al login y 404: Agregar nadbar-//
     if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista']!="login" && $_GET['vista']!="404"){
         include("./inc/header.php");
-        include("./vistas/".$_GET['vista'].".php");
+        include("./vistas/inicio.php");
         include("./inc/footerugma.php");
     }else{
         if($_GET['vista']=="login"){

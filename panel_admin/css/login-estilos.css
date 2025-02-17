@@ -42,7 +42,7 @@ main{
 }
 
 .login-contenedor a {
-    color: var(--color-texto);
+    color: var(--color-secundario);
     font-size: 13px;
     text-decoration: none;
     margin: .9375rem 0 .625rem;

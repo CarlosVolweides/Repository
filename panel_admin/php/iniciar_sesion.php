@@ -56,10 +56,20 @@
             $_SESSION['id'] = $chequear_usuario['usuario_id'];
             $_SESSION['nombre'] = $chequear_usuario['usuario_nombre'];
             $_SESSION['correo'] = $chequear_usuario['usuario_correo'];
-            //Datos fijos, cambiar para la actualizacion con roles
-            $_SESSION['cargo'] = 'EL SUPER ADMIN';
             $_SESSION['rol_id'] = $chequear_usuario['rol_id'];
-            $_SESSION['facultad'] = 'Ingenieria';
+            $_SESSION['sede_id'] = $chequear_usuario['sede_id'];
+            
+            $conn = conexion();
+            $query = $conn->query("SELECT rol_nombre FROM roles WHERE rol_id = ".$chequear_usuario['rol_id']);
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            
+            $_SESSION['rol'] = $result['rol_nombre'];
+
+            $conn = conexion();
+            $query = $conn->query("SELECT sede_nombre FROM sede WHERE sede_id = ".$chequear_usuario['sede_id']);
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+
+            $_SESSION['sede'] = $result['sede_nombre'];
 
 
             if(headers_sent()){

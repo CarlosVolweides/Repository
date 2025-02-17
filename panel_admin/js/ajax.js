@@ -1,4 +1,12 @@
-const formularios_ajax=document.querySelectorAll(".FormularioAjax");
+let formularios_ajax=document.querySelectorAll(".FormularioAjax");
+
+function recargarVariables(){
+    formularios_ajax=document.querySelectorAll(".FormularioAjax");
+    formularios_ajax.forEach(formularios => {
+        formularios.addEventListener("submit",enviar_formulario_ajax);
+    });
+    console.log("Variables recargadas");
+}
 
 function enviar_formulario_ajax(e){
     e.preventDefault();
@@ -25,8 +33,8 @@ function enviar_formulario_ajax(e){
         .then(respuesta => respuesta.text())
         .then(respuesta =>{ 
            alert(respuesta);
-           //let contenedor=document.querySelector(".form-rest");
-            //contenedor.innerHTML = respuesta;
+           let contenedor=document.querySelector(".form-rest");
+           contenedor.innerHTML = respuesta;
         });
     }
 

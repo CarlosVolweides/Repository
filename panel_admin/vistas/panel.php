@@ -13,13 +13,6 @@
                              GESTIONAR CARRERA / agregar carrera
                              PERFIL / cambio de contraseña
                 -->
-                <ul class="indicador-pagina">
-                    <li><a href="#">Inicio</a></li>
-
-                    <li class="divider">/</li>
-
-                    <li><a href="#" class="active">Panel principal</a></li>
-                </ul>
 
                 
                 <!-- INFO-DATA
@@ -51,7 +44,7 @@
                             <i class="fa-solid fa-briefcase icon"></i>
                         </div>
 
-                        <span class="progreso" data-value="100%"></span>
+                        <span class="progreso" data-value="100%" style="--value: 100%;"></span>
                         <span class="label">100%</span>
                     </div>
                     
@@ -76,9 +69,9 @@
                             $porcentaje = $totalPregrado*100/$totalTrabajos;
                             $porcentaje = round($porcentaje,2);
                             echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
+                                <span class="progreso" data-value='."$porcentaje%".' style="--value: '.$porcentaje.'%;"></span>
 
-                                <span class="label">'."$porcentaje%".'</span>
+                                <span class="label">'."$porcentaje%".' </span>
                             ';  
                         
                         ?>
@@ -105,7 +98,7 @@
                             $porcentaje = $totalPosgrado*100/$totalTrabajos;
                             $porcentaje = round($porcentaje,2);
                             echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
+                                <span class="progreso" data-value='."$porcentaje%".' style="--value: '.$porcentaje.'%;"></span>
 
                                 <span class="label">'."$porcentaje%".'</span>
                             ';  
@@ -115,7 +108,7 @@
                     </div>
                     
                      <!-- pasantias -->
-                    <div class="card">
+                     <div class="card">
                         <div class="porcentajes">
                             <div>
                                 <h2>
@@ -134,7 +127,7 @@
                             $porcentaje = $totalPasantia*100/$totalTrabajos;
                             $porcentaje = round($porcentaje,2);
                             echo '
-                                <span class="progreso" data-value='."$porcentaje%".'></span>
+                                <span class="progreso" data-value='."$porcentaje%".' style="--value: '.$porcentaje.'%;"></span>
 
                                 <span class="label">'."$porcentaje%".'</span>
                             ';  

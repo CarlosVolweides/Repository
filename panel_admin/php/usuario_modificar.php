@@ -3,6 +3,7 @@
     require_once "../php/main.php";
 
     #Almacenar Datos
+    $id = limpiar_cadena($_POST['usuario_id']);
     $nombre = limpiar_cadena($_POST['usuario_nombre']);
     $email = limpiar_cadena($_POST['usuario_email']);
     $clave = limpiar_cadena($_POST['usuario_clave']);
@@ -10,7 +11,7 @@
     $sede = limpiar_cadena($_POST['usuario_sede']);
 
     #Verificar los campos obligatorios si estan vacios
-    if($nombre=="" || $email == "" || $clave== "" || $rol == "" || $sede == ""){
+    if($id=="" || $nombre=="" || $email == "" || $clave== "" || $rol=="" || $sede == ""){
         echo '
         <div class="notificacion peligro ">
         <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -35,7 +36,7 @@
     //verificar email
     if(filter_var($email, FILTER_VALIDATE_EMAIL)){
         $chequear_usuario=conexion();
-            $chequear_usuario=$chequear_usuario->query("SELECT usuario_correo FROM usuario WHERE usuario_correo='$email'");
+            $chequear_usuario=$chequear_usuario->query("SELECT usuario_correo FROM usuario WHERE usuario_correo='$email' AND NOT usuario_id='$id'");
             if($chequear_usuario->rowCount()>0){//verifica si hay al menos un registro con el correo ingresado
                 echo '
                     <div class="notification is-danger is-light">
@@ -87,35 +88,40 @@
 
     $clave_usuario = password_hash($clave, PASSWORD_BCRYPT,["cost"=>10]);
 
-    #Guardando Datos
-    $guardar_usuario = conexion();
-    $guardar_usuario = $guardar_usuario->prepare("INSERT INTO usuario
-    (usuario_correo,usuario_contraseña, usuario_nombre, rol_id, sede_id) 
-    VALUES(:email, :clave_usuario, :nombre, :rol, :sede)");
+    #Modificar Datos
+    $modificar_usuario = conexion();
+    $modificar_usuario = $modificar_usuario->prepare("UPDATE usuario SET
+    usuario_correo = :email,
+    usuario_contraseña = :clave_usuario,
+    usuario_nombre = :nombre,
+    rol_id = :rol,
+    sede_id = :sede
+    WHERE usuario_id = :id");
 
     $marcadores=[
         ":nombre"=>$nombre,
         ":clave_usuario"=>$clave_usuario,
         ":email"=>$email,
         ":rol"=>$rol,
-        ":sede"=>$sede
+        ":sede"=>$sede,
+        ":id"=>$id,
     ];
 
-    $guardar_usuario->execute($marcadores);
+    $modificar_usuario->execute($marcadores);
 
-    if($guardar_usuario->rowCount()==1){
+    if($modificar_usuario->rowCount()==1){
         echo '
             <div class="notificacion">
-                <strong>¡USUARIO REGISTRADO!</strong><br>
-                El usuario se registro con éxito
+                <strong>¡USUARIO MODIFICADO!</strong><br>
+                El usuario se modificó con éxito
             </div>
         ';
     }else{
         echo '
         <div class="notificacion alerta">
             <strong>¡Ocurrio un error !</strong><br>
-            No se pudo registrar el usuario, por favor intente nuevamente
+            No se pudo realizar los cambios al usuario, por favor intente nuevamente
         </div>
     ';
     }
-    $guardar_usuario=null;
+    $modificar_usuario=null;

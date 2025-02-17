@@ -1,0 +1,33 @@
+.circular-buttondaa {
+    width: 200px;
+    height: 200px;  
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #eb1606;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }
+  
+.circular-buttondaa i {
+    line-height: 1;
+  }
+
+a#circular-buttondaa {
+  background-color: var(--color-acento);
+  width: 10em;
+  height: 40px;  
+  border-radius: 2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+a#circular-buttondaa:hover {
+    background-color: var(--color-secundario);
+}
