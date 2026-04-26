@@ -1,6 +1,6 @@
 <?php
 
-    // Conexion a la base de datos //
+// Conexion a la base de datos //
     function conexion(){
 		try {
 			$pdo = new PDO('mysql:host=127.0.0.1:33065;dbname=repositorio', 'root', '');
@@ -12,7 +12,7 @@
 	}
 	
 
-    # Limpiar cadenas de texto #
+# Limpiar cadenas de texto #
 	function limpiar_cadena($cadena){
 		$cadena=trim($cadena);
 		$cadena=stripslashes($cadena);
@@ -43,7 +43,7 @@
 		return $cadena;
 	}
 
-    # Verificar datos #
+# Verificar datos #
 	function verificar_datos($filtro,$cadena){
 		if(preg_match("/^".$filtro."$/", $cadena)){
 			return false;
@@ -52,6 +52,18 @@
         }
 	}
 
+// Eliminar acentos //
+	function eliminar_acentos($cadena){
+		
+		$cadena = str_replace(
+			array('Á', 'À', 'Â', 'Ä', 'É', 'È', 'Ê', 'Ë', 'Í', 'Ì', 'Ï', 'Î', 'Ó', 'Ò', 'Ö', 'Ô', 'Ú', 'Ù', 'Û', 'Ü', 'Ñ', 'Ç'),
+			array('á', 'à', 'â', 'ä', 'é', 'è', 'ê', 'ë', 'í', 'ì', 'ï', 'î', 'ó', 'ò', 'ö', 'ô', 'ú', 'ù', 'ü', 'û', 'ñ', 'ç'),
+			$cadena
+		);
+	
+		return $cadena;
+	}
+//PAGINADORA DE TRABAJOS//
 	function paginadora_trabajos($pagina,$nregistros,$query,$nombre_listado,$lq=null,$ctipo=null,$cfacultad=null,$ccarrera=null){
 
 		//Variables iniciales//
@@ -82,24 +94,59 @@
 			$tabla.="<p class='coincidencias'> Enseñando ".$enseniar." de ".$total ." coincidencias</p>";
 		//WHILE que crea cada box de registro//
 			while($row = $cone->fetch(PDO::FETCH_ASSOC)){
-				$tabla .= '<div class="listado-contenedor">
-                <div class="listado">
-                    <div class="listadoizq">
-                        <img src="imagen.jpg" alt="">
-                    </div>
-                
-                    <div class="listadoder">
+				$tabla .= '<li>
+				<div class="trabajo">
+					<a href="trabajo.php?id='.$row['trabajo_id'].'">
 
-                        <div class="descripcion">
-                            <p>Titulo: <span>'.$row['trabajo_titulo'].'</span></p>
-                            <br>
-                            <p>Autor: <span>'.$row["autor_nombre"].'</span></p>
-                            <p>Carrera: <span>'.$row["carrera_nombre"].'</span></p>
-                            <p>Area de investigacion: <span>'.$row["area_nombre"].'</span></p>
-                        </div>
-                    </div>
-                </div>
-				</div>';
+
+                	<div class="listado">
+						<div class="imagen-trabajo">
+							<img src="img/T.E/'.$row['tipo_trabajo_nombre'].'-'.$row['carrera_nombre'].'.webp" alt="">
+
+							<span class="imagen" style="background-image: url("./img/pregrado-civilpeque.png");"></span> 
+						</div>
+					
+						<div class="contenedor-infoTrabajo">
+
+							<div class="metaDatos">
+
+								<h2 class="tituloTrabajo"> 
+									'.ucfirst(eliminar_acentos(strtolower($row['trabajo_titulo']))).'
+
+								</h2>
+								
+								
+
+								<div class="descripcion">
+									<p>Autor: 
+										<i class="fa-solid fa-user"></i>
+										'.$row["autor_nombre"].'
+									</p>
+
+									<p>Carrera:
+										 <i class="fa-solid fa-graduation-cap"></i>
+										'.$row["carrera_nombre"].'
+									</p>
+
+									<p>Área de investigación:
+										<i class="fa-solid fa-book"></i>
+										'.$row["area_nombre"].'
+									</p>
+								</div>
+							</div>
+
+							<div class="resumen">
+								<p>
+									'.$row['trabajo_resumen'].'
+								</p>
+
+								<a href="trabajo.php?id='.$row['trabajo_id'].'" class="btn">Leer más →</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				</li>';
 				$count++;
 			}
 		//IF para concatenar al final si no hay mas registros en la pagina//
@@ -143,7 +190,7 @@
 
 
 				//Concatenacion resultante de botones de la paginadora//
-				$tabla.= '<a type="button" '.$clase.' href="/Repository-Ugma-main/'.$nombre_listado.'.php?p='.$i.$categorias.$q.'" >'.$i.'</a>
+				$tabla.= '<a type="button" '.$clase.' href="/Repository/'.$nombre_listado.'.php?p='.$i.$categorias.$q.'" >'.$i.'</a>
 					';
 			}
 			$tabla.= '</div>';

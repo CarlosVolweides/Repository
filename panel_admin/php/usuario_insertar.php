@@ -6,6 +6,7 @@
     $nombre = limpiar_cadena($_POST['usuario_nombre']);
     $email = limpiar_cadena($_POST['usuario_email']);
     $clave = limpiar_cadena($_POST['usuario_clave']);
+    $rol = limpiar_cadena($_POST['usuario_rol']);
 
     #Verificar los campos obligatorios si estan vacios
     if($nombre=="" || $email == "" || $clave== ""){
@@ -40,6 +41,7 @@
                         <strong>¡Ocurrio un error!</strong><br>
                         El correo ingresado ya se encuentra registrado, por favor ingrese otro
                     </div>
+                    '.$nombre.$email.$clave.$rol.'
                 ';
                 exit();
             }
@@ -63,19 +65,29 @@
         ';
         exit();
     }
+    if(verificar_datos("[0-9]{1,2}",$rol)){
+        echo '
+        <div class="notificacion peligro ">
+        <strong>¡Ocurrio un error inesperado!</strong><br>
+        La rol no coincide con el formato adecuado
+        </div>
+        ';
+        exit();
+    }
 
     $clave_usuario = password_hash($clave, PASSWORD_BCRYPT,["cost"=>10]);
 
     #Guardando Datos
     $guardar_usuario = conexion();
     $guardar_usuario = $guardar_usuario->prepare("INSERT INTO usuario
-    (usuario_correo,usuario_contraseña, usuario_nombre) 
-    VALUES(:email, :clave_usuario, :nombre)");
+    (usuario_correo,usuario_contraseña, usuario_nombre, rol_id) 
+    VALUES(:email, :clave_usuario, :nombre, :rol)");
 
     $marcadores=[
         ":nombre"=>$nombre,
         ":clave_usuario"=>$clave_usuario,
-        ":email"=>$email
+        ":email"=>$email,
+        ":rol"=>$rol
     ];
 
     $guardar_usuario->execute($marcadores);

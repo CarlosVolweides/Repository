@@ -12,65 +12,62 @@
          referrerpolicy="no-referrer" 
     />
 
-    <link rel="stylesheet" href="/Repository-Ugma-main/css/estilos-header.css">
+    <link rel="stylesheet" href="/Repository/css/estilos-header.css">
 
-    <title>HEADER</title>
+    <title>Repositorio UGMA</title>
 </head>
 <body>
     <header>
         <div class="contenedor-header">
                 
             <div class="logo">
-                <img src="/Repository-Ugma-main/img/UGMA-logo.png" alt="Logo">
-                <span>Universidad Noriental <br> "Gran Mariscal de Ayacucho"</span>
+                <img src="/Repository/img/UGMA-logo.png" alt="Logo">
+                <span>Universidad Nororiental <br> "Gran Mariscal de Ayacucho"</span>
             </div>
 
             <nav>
-                <div class="buscador">
+                <div class="buscador-header">
 
-                    <form action="/Repository-Ugma-main/listado.php" method="get">
+                    <form action="/Repository/listado.php" method="get">
                     <input type="search" name="q" placeholder="Buscar" class="input-primario">
-                    <button type="submit" class="btn-primario-amarillo"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button type="submit" class="btn-primario-amarillo" id="lupitabuscador"><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
                 </div>
                 <ul class="bar">
-                    <li><a href="/Repository-Ugma-main/" class="active"><i class="fa-solid fa-house"></i></a></li>
+                    <li><a href="/Repository/" class="active"><i class="fa-solid fa-house"></i></a></li>
 
-                    <li><a href="#"><i class="fa-solid fa-book-open"></i> Sobre UGMA</a></li>
+                    <li><a href="/Repository/sobreUgma.php"><i class="fa-solid fa-book-open"></i> Sobre UGMA</a></li>
 
                     <li class="has-dropdown">
                         <a href="#"><i class="fa-solid fa-briefcase"></i> Trabajos <i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="dropdown">
-                            <li><a href="/Repository-Ugma-main/categorias.php?p=1&tipo=1">Tesis pregrado</a></li>
-                            <li><a href="#">Tesis posgrado</a></li>
-                            <li><a href="/Repository-Ugma-main/categorias.php?p=1&tipo=2">Pasantías</a></li>
+                            <li><a href="/Repository/categorias.php?p=1&tipo=1">Tesis pregrado</a></li>
+                            <li><a href="/Repository/categorias.php?p=1&tipo=3">Tesis posgrado</a></li>
+                            <li><a href="/Repository/categorias.php?p=1&tipo=2">Pasantías</a></li>
                         </ul>
                     </li>
 
                     <li class="has-dropdown">
                         <a href="#"><i class="fa-solid fa-landmark"></i> Facultades <i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="dropdown">
-                            <li><a href="#">Ingeniería</a></li>
-                            <li><a href="#">Derecho</a></li>
-                            <li><a href="#">Psicología</a></li>
-                            <li><a href="#">FACES</a></li>
-                            <li><a href="#">Odontología</a></li>
+                            <li><a href="/Repository/categorias.php?p=1&facultad=1">Ingeniería</a></li>
+                            <li><a href="/Repository/categorias.php?p=1&facultad=3">Derecho</a></li>
+                            <li><a href="/Repository/categorias.php?p=1&facultad=2">FACES</a></li>
+                            <li><a href="/Repository/categorias.php?p=1&facultad=5">Psicología</a></li>
                         </ul>
                     </li>
 
                     <li class="has-dropdown carreras">
                         <a href="#"><i class="fa-solid fa-graduation-cap"></i> Carreras <i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="dropdown">
-                            <li><a href="#"><center>Ingeniería en Sistemas</center></cente></a></li>
-                            <li><a href="#"><center>Ingeniería Informática</center></a></li>
-                            <li><a href="#"><center>Ingeniería Civil</center></a></li>
-                            <li><a href="#"><center>Ingeniería en mantenimiento</center></a></li>
-                            <li><a href="#"><center>Contaduría pública</center></a></li>
-                            <li><a href="#"><center>Economía</center></a></li>
-                            <li><a href="#"><center>Administración</center></a></li>
-                            <li><a href="#"><center>Derecho</center></a></li>
-                            <li><a href="#"><center>Psicología</center></a></li>
-                            <li><a href="#"><center>Odontología</center></a></li>
+                            <li><a href="/Repository/categorias.php?p=1&carrera=1"><center>Ingeniería en Sistemas</center></cente></a></li>
+                            <li><a href="/Repository/categorias.php?p=1&carrera=2"><center>Ingeniería Informática</center></a></li>
+                            <li><a href="/Repository/categorias.php?p=1&carrera=3"><center>Ingeniería Civil</center></a></li>
+                            <li><a href="/Repository/categorias.php?p=1&carrera=4"><center>Ingeniería en mantenimiento</center></a></li>
+                            <li><a href="/Repository/categorias.php?p=1&carrera=5"><center>Administración de empresas</center></a></li>
+                            <li><a href="/Repository/categorias.php?p=1&carrera=6"><center>Economía</center></a></li>
+                            <li><a href="/Repository/categorias.php?p=1&carrera=7"><center>Derecho</center></a></li>
+                            <li><a href="/Repository/categorias.php?p=1&carrera=8"><center>Psicología</center></a></li>
                         </ul>
                     </li>
                     
@@ -82,32 +79,10 @@
 
             <div class="enlaces-header">
                 <div class="ugma">
-                    <a href="" class="enlace"><i class="fa-solid fa-chalkboard-user"></i>Estudia con nosotros</a>
-                    <button class="btn-secundario-azul"><a href=""><i class="fa-brands fa-facebook only"></i></a></button>
-                    <button class="btn-secundario-amarillo"><a href=""><i class="fa-brands fa-instagram only"></i></a></button>
+                    <a href="https://ugma.terna.net/" class="enlace"><i class="fa-solid fa-chalkboard-user"></i>Estudia con nosotros</a>
+                    <button class="btn-secundario-azul"><a href="https://www.facebook.com/UGMAENLINEA/"><i class="fa-brands fa-facebook only"></i></a></button>
+                    <button class="btn-secundario-amarillo"><a href="https://www.instagram.com/ugma_guayana/"><i class="fa-brands fa-instagram only"></i></a></button>
                 </div>  
-
-
-                <div class="usuario">
-                    <?php
-                        error_reporting(0);
-                        $validar = $_SESSION['nombre'];
-                        if($validar == null || $validar = ''){
-                            echo('
-                                <button class="btn-enlace-azul"><a href="./index.php?login&registrarse"><i class="fa-solid fa-user"></i>Registrarse</a></button>
-                                <button class="btn-enlace-azul"><a href="./index.php?login"><i class="fa-solid fa-glasses"></i>Acceder</a></button>                                
-                            ') ;
-                        }
-                        else{
-                            echo('
-                                <button class="btn-enlace-azul"><a href="#"><i class="fa-solid fa-user"></i>Mi Perfil</a></button>  
-                                <button class="btn-enlace-azul"><a href="./vistas/logout.php"><i class="fa-solid fa-user"></i>Cerrar Sesion</a></button>  
-                            ');               
-                        }
-                    ?>
-                    
-                    <!-- <button class="btn-enlace-azul"><a href="login.html"><i class="fa-solid fa-glasses"></i>Acceder</a></button>  -->
-                    <button class="btn-primario-azul"><a href=""><i class="fa-solid fa-heart only"></i></a></button>
                 </div>
 
             </div>
@@ -115,9 +90,6 @@
 
     </header>
 
-    <main>
-        <div class="color-blue"></div>
-    </main>
     <?php 
     error_reporting(0);
     $nombre_usuario = $_SESSION['nombre'];

@@ -51,23 +51,35 @@ nav {
 }
 
 /* 🔍 Buscador*/
-    .buscador {
+    .buscador-header {
         display: flex;
         width: 70%;
         padding: 1rem 0 .7rem;
     }
 
-    .buscador input{
+    .buscador-header form{
+        display: flex;
+        width: 100%;
+        padding: 1rem 0 .7rem;
+        border-bottom-right-radius: 0%;
+        border-top-right-radius: 0%;
+    }
+
+    .input-primario{
         align-self: center;
         width: 100%;
         border-radius: 6px 0 0 6px;
         padding: 5px 1rem;
+        border-bottom-right-radius: 0%;
+        border-top-right-radius: 0%;
     }
 
-    .buscador button{
+    #lupitabuscador{
         border-radius: 0 8px 8px 0;
         font-size: 1rem;
         padding: 7px;
+        padding-left: 20px;
+        padding-right: 20px;
         display: flex;
     }
 
@@ -204,24 +216,6 @@ nav {
 .enlaces-header i.only {
     margin-right: 0px;
     font-size: 1rem;
-}
-
-
-
-main {
-    position: relative;
-    top: 6.25rem;
-    height: 500px;
-    width: 100%;
-    background: var(--color-seccion);
-
-
-main {
-    position: relative;
-    top: 6.25rem;
-    height: 500px;
-    width: 100%;
-    background: var(--color-seccion);
 }
 
 

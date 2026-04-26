@@ -54,20 +54,20 @@
                     <img src="./img/6325109.png" alt="imagen admin">
 
                     <div class="cargo">
-                        <span>Cargo:</span><p>
+                        <span>Nombre:</span><p>
                             <?php
-                                $cargo_usuario = $_SESSION['cargo'];
-                                echo $cargo_usuario;
+                                $nombre_usuario = $_SESSION['nombre'];
+                                echo $nombre_usuario;
 
                             ?>
                         </p>
                     </div>
 
                     <div class="sub-cargo">
-                        <span>Facultad:</span><p>
+                        <span>Rol:</span><p>
                             <?php
-                                $facultad_usuario = $_SESSION['facultad'];
-                                echo $facultad_usuario;
+                                $rol_usuario = $_SESSION['rol'];
+                                echo $rol_usuario;
 
                             ?>
                         </p>
@@ -98,20 +98,31 @@
                                 $cargo_usuario = $_SESSION['rol_id'];
                                 
                                 switch($cargo_usuario){
-                                    case 1:
-                                        echo '<li><a href="#"> Tesis de pregrado</a></li>';
+                                    //ADMINISTRADOR
+                                    case 1:                                        
+                                        echo '
+                                        <li><a href="#" id="pregrado"> Trabajos de pregrado</a></li>
+                                        <li><a href="#" id="posgrado"> Trabajos de posgrado</a></li>
+                                        <li><a href="#" id="pasantia"> Trabajos de Pasantías</a></li>
+                                        ';
                                         break;
+                                    //JEFES DE FACULTAD
                                     case 2:
-                                        echo '<li><a href="#"> Tesis de posgrado</a></li>';
-                                        break;
                                     case 3:
-                                        echo '<li><a href="#"> Pasantías</a></li>';
+                                    case 4:
+                                    case 5:
+                                    case 6:
+                                        echo '
+                                        <li><a href="#" id="pregrado"> Trabajos de pregrado</a></li>
+                                        <li><a href="#" id="pasantia"> Trabajos de Pasantias</a></li>';
+                                        break;
+                                    //JEFE DE POSTGRADO
+                                    case 7:
+                                        echo '<li><a href="#" id="posgrado"> Trabajos de Posgrado</a></li>';
                                         break;
                                     default:
                                         echo '
-                                        <li><a href="#" id="pregrado"> Tesis de pregrado</a></li>
-                                        <li><a href="#" id=""> Tesis de posgrado</a></li>
-                                        <li><a href="#"> Pasantías</a></li>
+                                        <li><a href="#" id="error">Error en la pagina</a></li>
                                         ';
 
                                 }
@@ -124,25 +135,22 @@
                     
                 
                 <!--separador: ADMINISTRADOR -->
-                  
-                    <li class="divider" data-text="administrador"></li> <!-- li separador-->
-
-                    <li><a href="#" ><i class="fa-solid fa-user icon"></i></i> Gestionar usuarios</a></li>
-
-                    <li>
-                        <a href="#" id="proxi"><i class="fa-solid fa-landmark icon"></i> Gestionar facultades</a>
-                    </li>
-
-                    <li>
-                        <a href="#" id="proxi"><i class="fa-solid fa-graduation-cap icon"></i> Gestionar carreras</a>
-                    </li>
-                    <li>
-                        <a href="#" id="proxi"><i class="fa-solid fa-glasses icon"></i> Gestionar lineas de investigación</a>
-                    </li>
-
-                    <li>
-                        <a href="#" id="proxi"><i class="fa-solid fa-book icon"></i> Gestionar áreas de conocimiento</a>
-                    </li>
+                    <?php 
+                                error_reporting(0);
+                                $cargo_usuario = $_SESSION['rol_id'];
+                                
+                                if($cargo_usuario == '1'){
+                                        echo '
+                                        <li class="divider" data-text="administrador"></li> <!-- li separador-->
+                                        <li><a href="#" id="usuarios"><i class="fa-solid fa-user icon"></i> Gestionar usuarios</a></li>
+                                        <li><a href="#" id="proxi"><i class="fa-solid fa-landmark icon"></i> Gestionar facultades</a></li>
+                                        <li><a href="#" id="proxi"><i class="fa-solid fa-graduation-cap icon"></i> Gestionar carreras</a></li>
+                                        <li><a href="#" id="proxi"><i class="fa-solid fa-glasses icon"></i> Gestionar lineas de investigación</a></li>
+                                        <li><a href="#" id="proxi"><i class="fa-solid fa-book icon"></i> Gestionar áreas de conocimiento</a></li>
+                                        ';
+                                }
+                            
+                                ?>
                 
             </ul>
         </section>
@@ -161,8 +169,8 @@
                 <!-- barra de busqueda -->
                     <form action="#">
                         <div class="form-grupo">
-                            <input type="text" placeholder="Buscar...">
-                            <i class="fa-solid fa-magnifying-glass icon"></i>
+                                <input type="text" placeholder="Buscar..." id="busqueda">
+                                <i class="fa-solid fa-magnifying-glass icon" id="buscar" onclick="loadContent('buscar',1)" ></i>
                         </div>
                     </form>
         
@@ -193,5 +201,7 @@
 
 <footer></footer>
 <script src="js/admin-script.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/gestion-usuarios.js"></script>
 </body>
 </html>
